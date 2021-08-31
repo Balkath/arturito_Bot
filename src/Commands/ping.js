@@ -1,14 +1,17 @@
 const Command = require("../Structures/Command");
 
-module.export = new Command ({
+module.exports = new Command ({
     name: "ping",
     description: "Shows the ping of the bot!",
 
 
     async run(message, args, client) {
 
-        message.reply(`Ping: ${client.ws.ping} ms.`)
+        const msg = await message.reply(`Ping: ${client.ws.ping} ms.`)
+
+        msg.edit(`Ping: ${client.ws.ping} ms. \nMessage Ping: ${msg.createdTimestamp - message.createdTimestamp} ms.`);
+    
 
     }
 
-})
+});
